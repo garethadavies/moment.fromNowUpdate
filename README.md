@@ -29,7 +29,7 @@ The plugin is currently only set up to work with the HTML time element as it req
 #### Example HTML
 
 ```html
-<time class="fuzzywuzzy always-right text-gray" datetime="2013-08-09 14:54:23 +01:00">36 minutes ago</time>
+<time class="fuzzywuzzy" datetime="2013-08-09 14:54:23 +01:00">36 minutes ago</time>
 ```
 
 #### Example JavaScript
