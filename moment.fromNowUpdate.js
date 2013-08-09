@@ -8,6 +8,7 @@ Requires:
   * Moment.js
 Contents:
   * Set defaults
+  * Check interval value
   * Create our array of elements
   * Array Validation
   * Set Interval
@@ -33,7 +34,7 @@ Usage:
 
 ;(function (window, document, moment, undefined) {
 
-  moment.fn.fromNowUpdate = moment.fn.fromNowUpdateLong = function(options) {
+  moment.fn.fromNowUpdate = function(options) {
 
     var elementArray = [];
 
@@ -41,10 +42,21 @@ Usage:
     Set defaults
     */
 
+    // Make options an empty object if nothing is supplied
+    options = options || {};
+
+    // Set the default options
     options.container = options.container || undefined;
     options.className = options.className || 'fuzzywuzzy';
     options.interval = options.interval || 30000;
     options.dayLimit = options.dayLimit || 1000000;
+
+    /*
+    Check interval value
+    */
+
+    // If interval is set to anything less than 1 second
+    options.interval = (options.interval < 1000) ? options.interval = 30000 : options.interval;
 
     /*
     Create our array of elements
