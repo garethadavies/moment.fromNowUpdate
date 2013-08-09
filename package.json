@@ -1,0 +1,20 @@
+{
+  "name": "moment-fromNowUpdate",
+  "version": "0.1.0",
+  "author": "Gareth Davies <info@garethdavies.me> (http://www.garethdavies.me/)",
+  "description": "Plugin for Moment.js to auto update fuzzy time",
+  "keywords": [
+    "moment",
+    "date",
+    "fromNowUpdate"
+  ],
+  "homepage": "https://github.com/garethadavies/moment.fromNowUpdate",
+  "bugs": "https://github.com/garethadavies/moment.fromNowUpdate/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garethadavies/moment.fromNowUpdate.git"
+  },
+  "dependencies": {
+    "moment": "2.1.0"
+  }
+}
