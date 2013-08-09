@@ -11,7 +11,7 @@ Contents:
   * Check interval value
   * Create our array of elements
   * Array Validation
-  * Set Interval
+  * Set Timeout
 Author(s):
   * Gareth Davies @garethadavies
 Usage:
@@ -99,44 +99,50 @@ Usage:
     if (elementArray.length > 0) {
 
       /*
-      Set Interval
+      Set Timeout
       */
 
-      // Perform a process on each element every 1 minute
-      window.setInterval(function() {
+      (function loop() {
 
-        // Loop through each array item
-        for (var i = 0; i < elementArray.length; i++) {
+        setTimeout(function () {
 
-          var
-          now = moment(),
-          // Get the original time set on the time element
-          originalTime = elementArray[i].attributes.datetime.value,
-          // Work out the difference between the original time and now
-          difference = now.diff(originalTime, 'days');
+          // Loop through each array item
+          for (var i = 0; i < elementArray.length; i++) {
 
-          // Do we have a valid date?
-          if (moment(originalTime).isValid()) {
+            var
+            now = moment(),
+            // Get the original time set on the time element
+            originalTime = elementArray[i].attributes.datetime.value,
+            // Work out the difference between the original time and now
+            difference = now.diff(originalTime, 'days');
 
-            // Are we within the day limit?
-            if (difference < options.dayLimit) {
+            // Do we have a valid date?
+            if (moment(originalTime).isValid()) {
 
-              // Update the current fuzzy time
-              elementArray[i].innerHTML = moment(originalTime).from(now);
+              // Are we within the day limit?
+              if (difference < options.dayLimit) {
+
+                // Update the current fuzzy time
+                elementArray[i].innerHTML = moment(originalTime).from(now);
+
+              }
+
+            }
+            else {
+
+              // Let the developer know what has happened
+              throw('The supplied date ' + originalTime + ' is not valid and cannot be used');
 
             }
 
           }
-          else {
 
-            // Let the developer know what has happened
-            throw('The supplied date ' + originalTime + ' is not valid and cannot be used');
+          // Repeat this function
+          loop();
 
-          }
+        }, options.interval);
 
-        }
-
-      }, options.interval); // default interval is 30 seconds
+      })();
 
     }
     else {
