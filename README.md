@@ -18,9 +18,24 @@ Version currently live: **0.1.0**
 
 This script requires Moment.js, so make sure you add it after that file.
 
-&lt;script src=&quot;path/to/file/moment.fromNowUpdate.min.js&quot;&gt;&lt;/script&gt;
+```<script src="path/to/file/moment.js"></script>```
 
-```javascript
-moment(new Date(2011, 11, 23, 14, 30)).isocalendar();
-// [2011, 51, 5, 870]
+```<script src="path/to/file/moment.fromNowUpdate.min.js"></script>```
+
+### Usage
+
+```js
+moment().fromNowUpdate({
+
+  // The id of a container element | default: body
+  container: 'notes-list',
+  // Classname of the time elements you wish to be updated | default: 'fuzzywuzzy'
+  className: 'fuzzywuzzy',
+  // The time interval in milliseconds between updates | default: 30000 (30 seconds)
+  interval: 30000,
+  // Set a limit on dates which will be updated
+  // 1 = do not update items older than 1 day old
+  dayLimit: 1
+
+});
 ```
