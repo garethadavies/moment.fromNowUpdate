@@ -103,11 +103,22 @@ Usage:
           // Work out the difference between the original time and now
           difference = now.diff(originalTime, 'days');
 
-          // Are we within the day limit?
-          if (difference < options.dayLimit) {
+          // Do we have a valid date?
+          if (moment(originalTime).isValid()) {
 
-            // Update the current fuzzy time
-            elementArray[i].innerHTML = moment(originalTime).from(now);
+            // Are we within the day limit?
+            if (difference < options.dayLimit) {
+
+              // Update the current fuzzy time
+              elementArray[i].innerHTML = moment(originalTime).from(now);
+
+            }
+
+          }
+          else {
+
+            // Let the developer know what has happened
+            throw('The supplied date ' + originalTime + ' is not valid and cannot be used');
 
           }
 
