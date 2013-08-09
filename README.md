@@ -24,6 +24,16 @@ This script requires Moment.js, so make sure you add it after that file.
 
 ### Usage
 
+The plugin is currently only set up to work with the HTML time element as it requires the ```datetime``` attribute to be set with a value usable by Moment.js.
+
+#### Example HTML
+
+```html
+<time class="fuzzywuzzy always-right text-gray" datetime="2013-08-09 14:54:23 +01:00">36 minutes ago</time>
+```
+
+#### Example JavaScript
+
 ```js
 moment().fromNowUpdate({
 
