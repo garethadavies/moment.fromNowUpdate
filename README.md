@@ -8,6 +8,8 @@ Version currently live: **0.1.0**
 ## Requirements
 
 * Moment.js (2.1.0) - http://momentjs.com
+ 
+This plugin probably works with older versions on Moment, but I have only tested with 2.1.0
 
 ### Download the script
 
