@@ -109,29 +109,55 @@ Usage:
           // Loop through each array item
           for (var i = 0; i < elementArray.length; i++) {
 
-            var
-            now = moment(),
-            // Get the original time set on the time element
-            originalTime = elementArray[i].attributes.datetime.value,
-            // Work out the difference between the original time and now
-            difference = now.diff(originalTime, 'days');
+            var datetimeAttr = elementArray[i].attributes.datetime;
 
-            // Do we have a valid date?
-            if (moment(originalTime).isValid()) {
+            /*
+            Validate
+            */
 
-              // Are we within the day limit?
-              if (difference < options.dayLimit) {
+            // Do we have a datetime attribute?
+            if (datetimeAttr) {
 
-                // Update the current fuzzy time
-                elementArray[i].innerHTML = moment(originalTime).from(now);
+              var datetimeValue = datetimeAttr.value;
+
+              // Do we have a datetime value?
+              if (datetimeValue.length > 0) {
+
+                // Do we have a valid date?
+                if (moment(datetimeValue).isValid()) {
+
+                  var
+                  now = moment(),
+                  // Work out the difference between the original time and now
+                  difference = now.diff(datetimeValue, 'days');
+
+                  // Are we within the day limit?
+                  if (difference < options.dayLimit) {
+
+                    // Update the current fuzzy time
+                    elementArray[i].innerHTML = moment(datetimeValue).from(now);
+
+                  }
+
+                }
+                else {
+
+                  // Let the developer know what has happened
+                  throw('The supplied date ' + datetimeValue + ' is not valid and cannot be used');
+
+                }
+
+              }
+              else {
+
+                throw('A valid datetime attribute value is required');
 
               }
 
             }
             else {
 
-              // Let the developer know what has happened
-              throw('The supplied date ' + originalTime + ' is not valid and cannot be used');
+              throw('A time element with a datetime attribute is required');
 
             }
 
